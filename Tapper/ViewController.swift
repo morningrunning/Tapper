@@ -22,6 +22,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var tapsBtn: UIButton!
     
     
+    @IBAction func onCoinTapped(sender: UIButton) {
+        currentTaps += 1
+        updateTapsLbl()
+        
+        
+    }
     @IBAction func onPlayButtonPressed(sender: UIButton) {
         
         if howManyTapsTxt.text != nil && howManyTapsTxt.text != "" {
@@ -35,12 +41,38 @@ class ViewController: UIViewController {
         
             maxTaps = Int(howManyTapsTxt.text!)!
             currentTaps = 0
+            updateTapsLbl()
+            
+            if isGameOver(){
+                
+            }
             
         }
         
         
         }
+    func restartGame () {
+        maxTaps = 0
+        howManyTapsTxt.text = "nil"
+        logoImg.hidden = true
+        playBtn.hidden = true
+        tapsLbl.hidden = true
+        tapsBtn.hidden = true
+    }
     
+    func isGameOver () -> Bool {
+        if currentTaps >= maxTaps{
+            return true
+        } else {
+            return false
+        }
+        
+    }
+    
+    func updateTapsLbl (){
+       tapsLbl.text = " \(currentTaps) Taps"
+        
+    }
 
 }
 
